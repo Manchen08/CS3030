@@ -1,0 +1,95 @@
+ ____________________________________________________________________
+/                                                                    \
+|                                                                    |
+|     Welcome to the Icarus Server                                   |
+|                                                                    |
+|     This README contains a summary of the Linux Basic Tutorial     |
+|                                                                    |
+\____________________________________________________________________/
+Jon Wheeler
+Iron Man is awesome!
+CS3030
+
+--------------------
+Commands Introducted
+--------------------
+man - display online manual pages, try 'man ls' or 'man man'
+ls - list directory contents
+cat - concatenate files and print to standard output
+mkdir - make directories
+cd - change directoris
+cp - copy files and directories
+less - file perusal, allows backwards and forwards viewing
+echo - display a line of text
+
+---------------------
+Environment Variables
+---------------------
+The contents of a bash environment variable can be printed out using the
+echo command, for example:
+Hello!
+
+echo $HOME
+
+Another shortcut for $HOME is ~, or the tilde.
+
+$PATH is a very important variable that contains a list of paths to various
+  directories in the filesystem. Each of these directories contain executible
+  programs. Having the directory in your $PATH variable allows you to simply
+  type the command, leaving off the full path.
+
+~/.bashrc is a file located in your home directory. It contains commands
+  that are ran when you log in to Linux. This is where you can customize your
+  shell, to include making modifications to $PATH.
+
+Since .bashrc begins with a . (period), it is normally hidden. Use the -a 
+  switch on ls to view all files, including the hidden ones, for example:
+
+ls -la ~
+
+------------------------------
+File and Directory Permissions
+------------------------------
+Each file and directory has three user based permission groups:
+ - owner : The Owner permissions apply only to the owner user.
+ - group : The Group permissions apply to all users thare are in the group.
+ - all users : The All Users permissions apply to all other users on the
+               system.
+
+There are three types of permissions:
+r = Read    : Permission to VIEW a file 
+w = Write   : Permission to ALTER a file
+x = eXecute : Permission to RUN a file
+
+Each of the three groups can have any combination of the three types
+of permissions.
+
+The command ls -l will display the file permissons. For example:
+-rw-r--r--. 1 ibm9999 student 1016 Jul 18 22:20 README
+  ^  ^  ^
+  |  |  |___ Everyone
+  |  |______ Group
+  |_________ Owner
+
+In the above example, the user ibm9999 is the owner and has permission
+  to read and write the README file. The users in group student have 
+  permission to read the file, and everyone else on the system has
+  permission to read the file.
+Jon Wheeler
+Iron Man is awesome!
+CS3030
+
+The command ls -l will display the file permissons. For example:
+-rw-r--r--. 1 ibm9999 student 1016 Jul 18 22:20 README
+  ^  ^  ^
+  |  |  |___ Everyone
+  |  |______ Group
+  |_________ Owner
+
+In the above example, the user ibm9999 is the owner and has permission
+  to read and write the README file. The users in group student have 
+  permission to read the file, and everyone else on the system has
+  permission to read the file.
+Jon Wheeler
+Iron Man is awesome!
+CS3030
