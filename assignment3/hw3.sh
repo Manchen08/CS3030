@@ -23,21 +23,29 @@ help()
 	echo "Both arguments are required"
 }
 
-if [[ $# != 4 ]]
-then
-	help
-	exit 1
-fi
-
 if [[ $1 == "--help" ]]
 then
 	help
 	exit 0
 fi
 
-if [[ $1 == "-c" ]]
+while getopts ":c:f:" opt
+do
+	case $opt in
+		c) $dataFolder=$OPTARG
+			;;
+		f) $dataFile=$OPTARG
+			;;
+		/?)
+			help
+			;;
+	esac
+done
+
+if [[ $# != 4 ]]
 then
-	$dataFolder=$2
+	help
+	exit 1
 fi
 
 if [[ ! -d $dataFolder ]]
@@ -47,11 +55,6 @@ then
 	mkdir -p $dataFolder/{01..12}
 fi
 
-
-if [[ $3 == "-f" ]]
-then
-	$dataFile=$4
-fi
 
 echo "Getting file from customer server"
 
