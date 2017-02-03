@@ -14,8 +14,6 @@
 #===============================================================================
 
 #set -o nounset                              # Treat unset variables as an error
-dataFolder="fredData"
-dataFile="FRED.csv"
 
 help()
 {
@@ -32,21 +30,15 @@ fi
 while getopts ":c:f:" opt
 do
 	case $opt in
-		c) $dataFolder=$OPTARG
+		c) dataFolder=$OPTARG
 			;;
-		f) $dataFile=$OPTARG
+		f) dataFile=$OPTARG
 			;;
 		/?)
 			help
 			;;
 	esac
 done
-
-if [[ $# != 4 ]]
-then
-	help
-	exit 1
-fi
 
 if [[ ! -d $dataFolder ]]
 then
@@ -58,8 +50,9 @@ fi
 
 echo "Getting file from customer server"
 
-scp jwheeler@icarus.cs.weber.edu:/home/submit/cs3030/files/$dataFile 
+scp jw01126@icarus.cs.weber.edu:/home/hvalle/submit/cs3030/files/FRED.csv ./$dataFolder/`date +%m`/$dataFile.`date +%Y-%m-%d`
 
+echo "File located at ./$dataFolder/`date +$m`/$dataFile"
 exit 0
 
 
