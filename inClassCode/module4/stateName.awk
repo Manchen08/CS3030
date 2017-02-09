@@ -3,6 +3,6 @@
 BEGIN{FS=","} # comma delimiter
 
 {
-	print $1
+	print $4
 }
 
