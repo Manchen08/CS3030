@@ -5,7 +5,7 @@
 # 
 #         USAGE: ./hw3.sh 
 # 
-#   DESCRIPTION: 
+#   DESCRIPTION: Assignment. SCP file to local.
 # 
 #         NOTES: ---
 #        AUTHOR: Jon Wheeler (), jonathanwheeler1@weber.edu
@@ -14,32 +14,45 @@
 #===============================================================================
 
 #set -o nounset                              # Treat unset variables as an error
-dataFolder="fredData"
-dataFile="FRED.csv"
 
 help()
 {
 	echo "Usage $0 [-c customerDataFolder] [-f dataFile]"
 	echo "Both arguments are required"
+	exit 1;
 }
-
-if [[ $# != 4 ]]
-then
-	help
-	exit 1
-fi
 
 if [[ $1 == "--help" ]]
 then
 	help
-	exit 0
 fi
 
-if [[ $1 == "-c" ]]
+while getopts ":c:f:" opt
+do
+	case $opt in
+		c) dataFolder=$OPTARG
+			;;
+		f) dataFile=$OPTARG
+			;;
+		/?)
+			help
+			;;
+	esac
+done
+
+if [[ -z $dataFolder ]]
 then
-	$dataFolder=$2
+	echo "Folder is required"
+	help
 fi
 
+if [[ -z $dataFile ]]
+then
+	echo "File name is required"
+	help
+fi
+
+echo "Check for data structure"
 if [[ ! -d $dataFolder ]]
 then
 	echo "Customer $dataFolder is missing"
@@ -48,15 +61,11 @@ then
 fi
 
 
-if [[ $3 == "-f" ]]
-then
-	$dataFile=$4
-fi
-
 echo "Getting file from customer server"
 
-scp jwheeler@icarus.cs.weber.edu:/home/submit/cs3030/files/$dataFile 
+scp jw01126@icarus.cs.weber.edu:/home/hvalle/submit/cs3030/files/FRED.csv ./$dataFolder/`date +%m`/$dataFile.`date +%Y-%m-%d`
 
+echo "File located at /$dataFolder/`date +%m`/$dataFile.`date +%Y-%m-%d`"
 exit 0
 
 
