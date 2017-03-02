@@ -1,0 +1,2 @@
+from defPlay import even_or_odd
+even_or_odd(2)
