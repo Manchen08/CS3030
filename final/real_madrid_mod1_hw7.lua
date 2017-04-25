@@ -2,16 +2,15 @@
 local function has_value (tab, val)
     for index, value in ipairs(tab) do
         if value == val then
-            return true
+            return false 
         end
     end
 
-    return false
+    return true 
 end
 
-local function unlock(conditions) then    
+local function unlock(conditions)
     -- Test the condition given to see if the side doors of the van can be opened.
-    
     -- list of valid values for gs
     gs_values = {"P","N","D","1","2","3","R"}
     -- read in all the values
@@ -38,7 +37,7 @@ local function unlock(conditions) then
         print("Invalid Gear Shift Setting. No Doors Will Open")
         print("Valid Gear Shift Settings: P, N, D, 1, 2, 3, R \n")
     -- check if GS = P, if not doors cannot open
-    elseif gs != "P" then
+    elseif gs ~= "P" then
         print("Gear Not in Park 'P', doors cannot open. \n")
     -- check if ML == on or off, if ML == on doors cannot open
     elseif ml == "0" then
@@ -55,7 +54,7 @@ local function unlock(conditions) then
 		end
     -- check for childlock d==engaged and test dashboard switches, outside and inside handles
     elseif ch == "1" then
-        print("Child Lock == D==engaged.")
+        print("Child Lock is Disengaged.")
         if (ld == "1" or lo == "1" or li == "1") and (rd == "1" or ro == "1" or ri == "1") then
             print("Both doors open. \n")
         elseif ld == "1" or lo == "1" or li == "1" then
@@ -66,4 +65,15 @@ local function unlock(conditions) then
 	end
 end
 
-unlock({"P","N","D","1","2","3","R"}])
+k = {}
+k[9] = "P"
+k[8] = "1"
+k[7] = "1"
+k[6] = "1"
+k[5] = "1"
+k[4] = "1"
+k[3] = "1"
+k[2] = "1"
+k[1] = "1"
+k[0] = ""
+unlock(k)
